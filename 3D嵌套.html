@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        html{
+            background:linear-gradient(#ff0 0%, #000 80%);
+            height:100%;
+        }
+
+        .wrapper{
+            perspective: 1000px;  /*设置3D空间的距离*/
+            margin-top:200px;
+        }
+
+        /* 3d元素 */
+        .box{
+            width:200px;
+            height:200px;
+            position:relative;
+            color:#fff;
+            font-size:36px;
+            font-weight:bold;
+            text-align:center;
+            line-height:200px;
+            transform-style:preserve-3d; /* 默认flat 2D */
+            margin:0 auto;
+            transform:rotateY(20deg) rotateX(-5deg);
+            animation: move 20s infinite linear;
+        }
+
+        @keyframes move{
+            0%{
+                transform:rotateX(0deg) rotateY(0deg);
+            }
+            100%{
+                transform:rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        .box > div{
+            width:100%;
+            height:100%;
+            position: absolute;
+            border:1px solid #fff;
+            background-color:#333;
+            opacity: .6;
+            transition: transform 0.4s ease-in;
+            backface-visibility: visible;
+        }
+
+        .box:hover > .out-front{
+            transform:translate3d(0,0,200px);
+        }
+
+        .box:hover > .out-back{
+            transform:rotateY(180deg) translate3d(0,0,200px);
+        }
+
+        
+        .box:hover > .out-left{
+            transform:rotateY(-90deg) translate3d(0,0,200px);
+        }
+
+        .box:hover > .out-right{
+            transform:rotateY(90deg) translate3d(0,0,200px);
+        }
+
+        .box:hover > .out-top{
+            transform:rotateX(90deg) translate3d(0,0,200px);
+        }
+
+        .box:hover > .out-bottom{
+            transform:rotateX(-90deg) translate3d(0,0,200px);
+        }
+
+        .out-front{
+            transform:translate3d(0,0,100px);
+        }
+
+        .out-back{
+            transform:rotateY(180deg) translate3d(0,0,100px);
+        }
+
+        .out-left{
+            transform:rotateY(-90deg) translate3d(0,0,100px);
+        }
+
+        .out-right{
+            transform:rotateY(90deg) translate3d(0,0,100px);
+        }
+
+        .out-top{
+            transform:rotateX(90deg) translate3d(0,0,100px);
+        }
+
+        .out-bottom{
+            transform:rotateX(-90deg) translate3d(0,0,100px);
+        }
+
+        .box > span{
+            width:100px;
+	        height:100px;
+            position:absolute;
+            top:50px;
+            left:50px;
+            border:1px solid black;
+            background-color:#999;
+            backface-visibility: visible;
+        }
+
+        .in-front{
+            transform: translate3d(0,0,50px);
+        }
+
+        .in-back{
+            transform: rotateY(180deg) translate3d(0,0,50px);
+        }
+
+        .in-left{
+            transform: rotateY(-90deg) translate3d(0,0,50px);
+        }
+
+        .in-right{
+            transform: rotateY(90deg) translate3d(0,0,50px);
+        }
+
+        .in-top{
+            transform: rotateX(-90deg) translate3d(0,0,50px);
+        }
+
+        .in-bottom{
+            transform: rotateX(90deg) translate3d(0,0,50px);
+        }
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <div class="out-front">正面</div>
+            <div class="out-back">背面</div>
+            <div class="out-left">左面</div>
+            <div class="out-right">右边</div>
+            <div class="out-top">上面</div>
+            <div class="out-bottom">下面</div>
+
+            <span class="in-front"></span>
+            <span class="in-back"></span>
+            <span class="in-left"></span>
+            <span class="in-right"></span>
+            <span class="in-top"></span>
+            <span class="in-bottom"></span>
+        </div>
+    </div>
+</body>
+</html>
